@@ -9,7 +9,15 @@ module SimpleDate
       , show
       , dateUpdate
       )
+{-| Elm SimpleDate type
+This package try to work with date but in a simple way.
+It only have day, month and year -> All Strings
+The elm SimpleDate module can show date in ISO8601 format,
+transform each day, month and year in Int, and
+make a Json from a SimpleDate type.
 
+@docs SimpleDate, show, day, month, monthName, year, toJson, dateUpdate
+-}
 import Json.Decode as Dec exposing (Decoder)
 import Json.Encode as Enc
 import Json.Decode.Pipeline exposing (decode, required)
