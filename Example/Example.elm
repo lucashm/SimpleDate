@@ -16,7 +16,7 @@ type alias Model =
 init : ( Model, Cmd Msg )
 init =
     (
-    { simpleDate = {day = "", month = "", year = ""}
+    { simpleDate = {day = Nothing, month = Nothing, year = Nothing}
     }
     , Cmd.none )
 
@@ -55,7 +55,7 @@ view model =
           , text " Day: "
           , input [onInput (UpdateField "day")] []
           ]
-        , div [style [("margin-top", "10px")]] [text ("Date:" ++ (show model.simpleDate))]
+        , div [style [("margin-top", "10px")]] [text ("Date(Will only appear if date is 100% valid):" ++ (show model.simpleDate))]
         , div [style [("margin-top", "10px")]] [ text ("Date toInt -> toString again:")]
         , div [] [text ("Year: " ++ toString (year model.simpleDate))]
         , div [] [text ("Month: " ++ toString (month model.simpleDate) ++ " / " ++ (monthName (model.simpleDate)))]
