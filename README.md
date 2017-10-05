@@ -5,7 +5,7 @@ All functionalities are explained in the SimpleDate module.
 For a working example, check out the Example file
 
 ```elm
-{ simpleDate = {day = "", month = "", year = ""}
+{ simpleDate = {day = Nothing, month = Nothing, year = Nothing}
 ```
 This is a instance of simpleDate type.
 
