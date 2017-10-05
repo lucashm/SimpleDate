@@ -20,4 +20,8 @@ update msg model =
           in
             {model | simpleDate = newDate} ! []
 ```
-Here you can work with the "dateUpdate" function alongside with a message type
+Here you can work with the "dateUpdate" function alongside with a message type.
+field is the type that you want to edit, passed as a string. types can be:
+- "day"
+- "month"
+- "year"
