@@ -26,9 +26,9 @@ import Json.Decode.Pipeline exposing (decode, required)
   All three values are String type.
 -}
 type alias SimpleDate =
-  { month: Maybe String
-  , day: Maybe String
-  , year: Maybe String
+  { month: Maybe Int
+  , day: Maybe Int
+  , year: Maybe Int
   }
 
 
@@ -38,9 +38,9 @@ type alias SimpleDate =
 dateDecoder : Dec.Decoder SimpleDate
 dateDecoder =
     decode SimpleDate
-      |> required "month" (Dec.maybe Dec.string)
-      |> required "day" (Dec.maybe Dec.string)
-      |> required "year" (Dec.maybe Dec.string)
+      |> required "month" (Dec.maybe Dec.int)
+      |> required "day" (Dec.maybe Dec.int)
+      |> required "year" (Dec.maybe Dec.int)
 
 
 
@@ -67,16 +67,13 @@ toJson date =
 day : SimpleDate -> Maybe Int
 day date =
   let
-    conversion = String.toInt(maybeExtractor date.day)
+    validate = maybeExtractor date.day
   in
-    case conversion of
-      Ok result ->
-        if result >= 1 && result <= 31 then
-          Just result
-        else
-          Nothing
-      Err _ ->
-        Nothing
+    if validate >= 1 && validate <= 31 then
+      Just validate
+    else
+      Nothing
+
 
 
 {-| Returns the month in Int type
@@ -85,16 +82,13 @@ day date =
 month : SimpleDate -> Maybe Int
 month date =
   let
-    conversion = String.toInt(maybeExtractor date.month)
+    validate = maybeExtractor date.month
   in
-    case conversion of
-      Ok result ->
-        if result >= 1 && result <= 12 then
-          Just result
-        else
-          Nothing
-      Err _ ->
-        Nothing
+    if validate >= 1 && validate <= 12 then
+      Just validate
+    else
+      Nothing
+
 
 
 {-| takes a date and returns its month name
@@ -128,25 +122,21 @@ monthName date =
 year : SimpleDate -> Maybe Int
 year date =
   let
-    conversion = String.toInt(maybeExtractor date.year)
+    validate = maybeExtractor (date.year)
   in
-    case conversion of
-      Ok result ->
-        if result >= 1 && result <= 2999 then
-          Just result
-        else
-          Nothing
-      Err _ ->
-        Nothing
+    if validate >= 1 && validate <= 2999 then
+      Just validate
+    else
+      Nothing
 
 
-maybeExtractor: Maybe String -> String
+maybeExtractor: Maybe Int -> Int
 maybeExtractor value =
   case value of
     Nothing ->
-      ""
-    Just string ->
-      string
+      0
+    Just number ->
+      number
 
 
 
@@ -189,12 +179,18 @@ show date =
 -}
 dateUpdate : SimpleDate -> String -> String -> SimpleDate
 dateUpdate date field value =
+  let
+    conversion = value
+                  |> String.toInt
+                  |> Result.withDefault 0
+
+  in
     case field of
       "month" ->
-          {date | month = Just value}
+          {date | month = Just conversion}
       "day" ->
-          {date | day = Just value}
+          {date | day = Just conversion}
       "year" ->
-          {date | year = Just value}
+          {date | year = Just conversion}
       _ ->
           date
