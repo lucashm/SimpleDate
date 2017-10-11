@@ -1,0 +1,27 @@
+{
+  "name": "simpledate",
+  "version": "1.0.0",
+  "description": "simpledate type for elm.",
+  "main": "index.js",
+  "directories": {
+    "example": "example",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node_modules/elm-test/bin/elm-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasssm/simpledate.git"
+  },
+  "author": "Lucas Henrique Araújo Malta",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/lucasssm/simpledate/issues"
+  },
+  "homepage": "https://github.com/lucasssm/simpledate",
+  "devDependencies": {
+    "elm-format": "^0.7.0-exp",
+    "elm-test": "0.18.2"
+  }
+}
