@@ -1,5 +1,4 @@
-# SimpleDate
-All functionalities are explained in the SimpleDate module.
+# SimpleDate [![Build Status](https://travis-ci.org/lucasssm/SimpleDate.svg?branch=master)](https://travis-ci.org/lucasssm/SimpleDate)
 
 ### Example
 For a working example, check out the Example file
